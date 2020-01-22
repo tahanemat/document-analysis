@@ -1,0 +1,11 @@
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/bin/Debug/netcoreapp3.1/extractor-app
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/bin/Debug/netcoreapp3.1/extractor-app.deps.json
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/bin/Debug/netcoreapp3.1/extractor-app.runtimeconfig.json
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/bin/Debug/netcoreapp3.1/extractor-app.runtimeconfig.dev.json
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/bin/Debug/netcoreapp3.1/extractor-app.dll
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/bin/Debug/netcoreapp3.1/extractor-app.pdb
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/obj/Debug/netcoreapp3.1/extractor-app.csprojAssemblyReference.cache
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/obj/Debug/netcoreapp3.1/extractor-app.AssemblyInfoInputs.cache
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/obj/Debug/netcoreapp3.1/extractor-app.AssemblyInfo.cs
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/obj/Debug/netcoreapp3.1/extractor-app.dll
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/obj/Debug/netcoreapp3.1/extractor-app.pdb
