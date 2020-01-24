@@ -1,4 +1,45 @@
-<form action="/submit_file" method="POST" enctype="multipart/form-data">
-    <input type="file" name="uploadedfile">
-    <input type="submit">
-</form>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+</head>
+
+<body>
+    <div align="center">
+        <form method="post" action="" enctype="multipart/form-data" id="myform">
+
+            <div>
+                <input type="file" id="file" name="file" />
+                <input type="button" class="button" value="Upload" id="but_upload">
+            </div>
+        </form>
+        <div id="target_div" style="margin-top: 50px;">Dates</div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#but_upload").click(function () {
+                var fd = new FormData();
+                var files = $('#file')[0].files[0];
+                fd.append('file', files);
+
+                $.ajax({
+                    url: 'submit_file',
+                    type: 'post',
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                });
+            });
+        });
+        var source = new EventSource('/stream');
+        var target = document.getElementById('target_div');
+        source.onmessage = function (event) {
+            target.innerHTML += `<div>${event.data}</div>`
+        };
+    </script>
+</body>
+
+</html>
