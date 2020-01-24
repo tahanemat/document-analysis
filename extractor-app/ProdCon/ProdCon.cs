@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using RabbitMQ.Client.Events;
+using System.Threading;
 
 class Receive
 {
@@ -34,7 +35,7 @@ class Receive
                 }
             };
             channel.BasicConsume(queue: "extract", autoAck: true, consumer: consumer);
-            Console.ReadKey();
+            Thread.Sleep(Timeout.Infinite);
         }
     }
 }
