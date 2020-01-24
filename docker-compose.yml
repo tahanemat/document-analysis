@@ -22,3 +22,12 @@ services:
         restart: on-failure
         depends_on: 
             - rabbitmq
+    
+    front-app:
+        build: ./front-app
+        ports:
+            - 8080:80
+        depends_on:
+            - flask-app
+        links:
+            - flask-app

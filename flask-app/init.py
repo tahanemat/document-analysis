@@ -1,4 +1,5 @@
-from flask import Flask,render_template, request, Response
+from flask import Flask, request, Response
+from flask_cors import CORS
 from PIL import Image
 from pdf2image import convert_from_bytes
 import pytesseract
@@ -6,6 +7,7 @@ import pika
 import os
 import time
 app = Flask(__name__)
+CORS(app)
 
 ALLOWED_EXTENSIONS = ['.pdf','.png']
 
@@ -21,11 +23,6 @@ while connected == False:
     except Exception as e:
         print('connection failed because ' + str(e))
         time.sleep(3)
-
-
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 @app.route('/submit_file', methods=['POST'])
 def perform_ocr():
@@ -61,4 +58,4 @@ def stream():
     return Response(event_stream(rec_channel),mimetype="text/event-stream")
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)

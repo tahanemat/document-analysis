@@ -26,7 +26,7 @@
                 fd.append('file', files);
 
                 $.ajax({
-                    url: 'submit_file',
+                    url: 'http://localhost:5000/submit_file',
                     type: 'post',
                     data: fd,
                     contentType: false,
@@ -34,7 +34,7 @@
                 });
             });
         });
-        var source = new EventSource('/stream');
+        var source = new EventSource('http://localhost:5000/stream');
         var target = document.getElementById('target_div');
         source.onmessage = function (event) {
             target.innerHTML += `<div>${event.data}</div>`
