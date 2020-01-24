@@ -1,0 +1,13 @@
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/bin/Release/netcoreapp3.1/ProdCon
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/bin/Release/netcoreapp3.1/ProdCon.deps.json
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/bin/Release/netcoreapp3.1/ProdCon.runtimeconfig.json
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/bin/Release/netcoreapp3.1/ProdCon.runtimeconfig.dev.json
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/bin/Release/netcoreapp3.1/ProdCon.dll
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/bin/Release/netcoreapp3.1/ProdCon.pdb
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/bin/Release/netcoreapp3.1/RabbitMQ.Client.dll
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/obj/Release/netcoreapp3.1/ProdCon.csprojAssemblyReference.cache
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/obj/Release/netcoreapp3.1/ProdCon.AssemblyInfoInputs.cache
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/obj/Release/netcoreapp3.1/ProdCon.AssemblyInfo.cs
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/obj/Release/netcoreapp3.1/ProdCon.csproj.CopyComplete
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/obj/Release/netcoreapp3.1/ProdCon.dll
+/home/taha/taha-dev/git-projects/document-analysis/extractor-app/ProdCon/obj/Release/netcoreapp3.1/ProdCon.pdb

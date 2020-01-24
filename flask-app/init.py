@@ -45,13 +45,13 @@ def perform_ocr():
         image = convert_from_bytes(file_bytes, fmt="png", transparent=True, single_file=True)
         extracted_text = pytesseract.image_to_string(image[0])
         channel.basic_publish(exchange='', routing_key='extract', body=extracted_text)
+        print(extracted_text)
         return ('', 204)
 
 
 def event_stream(rec_channel):
     for method, properties, body in rec_channel.consume(queue='result', auto_ack=True):
-        message = body.decode('utf-8')
-        yield 'data: %s\n\n' % message
+        yield 'data: %s\n\n' % body
 
 @app.route('/stream')
 def stream():

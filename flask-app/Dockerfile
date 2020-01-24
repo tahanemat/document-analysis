@@ -6,10 +6,12 @@ WORKDIR /usr/src/app
 
 RUN apt-get update && apt-get install tesseract-ocr -y
 
+RUN apt-get install poppler-utils -y
+
 RUN python3 -m pip install -r requirements.txt
 
 EXPOSE 5000
 
-ENTRYPOINT [ "python3" ]
+ENTRYPOINT ["python3" ]
 
 CMD [ "init.py" ]
