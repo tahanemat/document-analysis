@@ -11,6 +11,7 @@ class Receive
     public static void Main()
     {
         var factory = new ConnectionFactory() { HostName = "localhost" };
+        var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
         {
@@ -27,8 +28,10 @@ class Receive
                 foreach (Match m in regex.Matches(message))
                 {
                     DateTime dt;
-                    if (DateTime.TryParseExact(m.Value, "dd.MM.yyyy", null, DateTimeStyles.None, out dt)){
-                        byte[] singleDate = BitConverter.GetBytes(dt.Ticks);
+                    if (DateTime.TryParseExact(m.Value, "dd.MM.yyyy", null, DateTimeStyles.None, out dt))
+                    {
+                        var unixDateTime = (dt.ToUniversalTime() - epoch).TotalSeconds;
+                        byte[] singleDate = BitConverter.GetBytes(unixDateTime);
                         channel.BasicPublish(exchange: "", routingKey: "result", basicProperties: null, body: singleDate);
                         Console.WriteLine("Sent a message! " + dt.ToString());
                     }

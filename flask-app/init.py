@@ -1,11 +1,14 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, stream_with_context
 from flask_cors import CORS
 from PIL import Image
 from pdf2image import convert_from_bytes
+from datetime import datetime
 import pytesseract
 import pika
 import os
 import time
+import struct
+
 app = Flask(__name__)
 CORS(app)
 
@@ -48,6 +51,8 @@ def perform_ocr():
 
 def event_stream(rec_channel):
     for method, properties, body in rec_channel.consume(queue='result', auto_ack=True):
+        # timestamp = struct.unpack('>Q', body)[0] # convert byte array to number
+        # date = datetime.fromtimestamp(timestamp) # byte array is not the same as c#
         yield 'data: %s\n\n' % body
 
 @app.route('/stream')
@@ -55,7 +60,7 @@ def stream():
     rec_connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
     rec_channel = rec_connection.channel()
     rec_channel.queue_declare(queue='result')
-    return Response(event_stream(rec_channel),mimetype="text/event-stream")
+    return Response(stream_with_context(event_stream(rec_channel)),mimetype="text/event-stream")
 
 if __name__ == "__main__":
     app.run(debug=True)
