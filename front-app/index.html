@@ -6,7 +6,7 @@
     </script>
 </head>
 
-<body>
+<body style="background-color: #0000ff5c">
     <div align="center">
         <form method="post" action="" enctype="multipart/form-data" id="myform">
 
@@ -14,30 +14,59 @@
                 <input type="file" id="file" name="file" />
                 <input type="button" class="button" value="Upload" id="but_upload">
             </div>
+            <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+            <h3 id="status"></h3>
+            <p id="loaded_n_total"></p>
         </form>
+        <p id="status_app">Ready</p>
         <div id="target_div" style="margin-top: 50px;">Dates</div>
     </div>
-
     <script type="text/javascript">
         $(document).ready(function () {
             $("#but_upload").click(function () {
+                var statusApp = document.getElementById('status_app')
+                statusApp.innerHTML = 'Extracting dates from uploaded file...';
                 var fd = new FormData();
                 var files = $('#file')[0].files[0];
                 fd.append('file', files);
-
-                $.ajax({
-                    url: 'http://localhost:5000/submit_file',
-                    type: 'post',
-                    data: fd,
-                    contentType: false,
-                    processData: false,
-                });
+                var ajax = new XMLHttpRequest();
+                ajax.upload.addEventListener("progress", progressHandler, false);
+                ajax.addEventListener("load", completeHandler, false);
+                ajax.addEventListener("error", errorHandler, false);
+                ajax.addEventListener("abort", abortHandler, false);
+                ajax.open("POST", "http://localhost:5000/submit_file");
+                ajax.send(fd);
             });
         });
+
+        function _(el) {
+            return document.getElementById(el);
+        }
+        function progressHandler(event) {
+            _("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
+            var percent = (event.loaded / event.total) * 100;
+            _("progressBar").value = Math.round(percent);
+            _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
+        }
+
+        function completeHandler(event) {
+            _("status").innerHTML = event.target.responseText;
+            _("progressBar").value = 0; //wil clear progress bar after successful upload
+        }
+
+        function errorHandler(event) {
+            _("status").innerHTML = "Upload Failed";
+        }
+
+        function abortHandler(event) {
+            _("status").innerHTML = "Upload Aborted";
+        }
+
         var source = new EventSource('http://localhost:5000/stream');
         var target = document.getElementById('target_div');
         source.onmessage = function (event) {
-            target.innerHTML += `<div>${event.data}</div>`
+            target.innerHTML += `<div>${event.data}</div>`;
+            document.getElementById('status_app').innerHTML = 'Ready';
         };
     </script>
 </body>
